@@ -1,11 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   mode: 'development',
   entry: {
-    bundle: path.resolve(__dirname, 'src', 'index.js'),
+    bundle: path.resolve(__dirname, 'src', 'index.ts'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,7 +13,7 @@ module.exports = {
     clean: true,
     assetModuleFilename: '[name][ext]',
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
@@ -44,6 +44,11 @@ module.exports = {
         test: /\.(svg|png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   plugins: [
@@ -52,6 +57,9 @@ module.exports = {
       filename: 'index.html',
       template: 'src/template.html',
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
 };
