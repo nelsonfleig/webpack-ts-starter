@@ -1,3 +1,3 @@
 # Webpack TS Starter
 
-Basic webpack boilerplate for basic Frontend JS projects.
+Basic webpack boilerplate for Frontend projects with Typescript and SCSS.
